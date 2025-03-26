@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Person } from '../person/person';
-import { filter, Observable, of } from 'rxjs';
+import { delay, filter, map, Observable, of } from 'rxjs';
 import { Users } from './../users';
 
 @Injectable({
@@ -15,12 +15,13 @@ export class PersonService {
   }
 
   getAll(): Observable<Person[]> {
-    return of(Users);
+    return of(Users).pipe(delay(this.simulateDelay()));
   }
 
-  getById(id: number): Observable<Person> {
-    let user: Person =  of(Users).pipe(
-      filter(user => user.id == id)
+  getById(id: number): Observable<Person | undefined> {
+    let user: Observable<Person | undefined> =  of(Users).pipe(
+      map(users => users.find(user => user.id == id))
     );
+    return user;
   }
 }

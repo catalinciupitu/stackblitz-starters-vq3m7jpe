@@ -17,12 +17,6 @@ export class PersonListComponent implements OnInit {
   }
 
   ngOnInit(): void {
-      //this.router.navigate(['person/', 1]);
-      of(Users)                  // → emits values
-  .pipe(
-    map(x: Person => x.id / 10)              // → modifies each value
-  )
-  .subscribe(result => console.log(result));
 
 
   }
