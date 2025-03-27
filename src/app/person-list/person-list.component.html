@@ -1,12 +1,12 @@
 <p>person-list works!</p>
-<div *ngFor="let user of users; let i = index">
+<div *ngFor="let user of users(); let i = index">
   {{ i + 1 }} | {{ user.name }}
 </div>
 
 <div>
   <div><a routerLink="/">Home</a></div>
   <div><a href="/">Home</a></div>
-  @for ( user of users; track user.id) {
+  @for ( user of users(); track user.id) {
   <div>
     {{ $index + 1 }} |
     <a routerLink="['person/', 1]"> {{ fibonnaci(user.id) }} </a> |

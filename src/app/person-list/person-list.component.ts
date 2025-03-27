@@ -3,6 +3,7 @@ import { NgFor, NgIf } from '@angular/common';
 import { Router, RouterModule } from '@angular/router';
 import { Users } from './../users';
 import { of, map } from 'rxjs';
+import { UsersStoreService } from '../service/users-store.service';
 
 @Component({
   selector: 'app-person-list',
@@ -12,15 +13,19 @@ import { of, map } from 'rxjs';
 })
 export class PersonListComponent implements OnInit {
 
-  constructor(private router: Router) {
+  public users = this.userStore.users;
 
+  constructor(
+    private router: Router, 
+    private userStore: UsersStoreService
+  ) {
+    this.userStore.loadUsers();
   }
 
   ngOnInit(): void {
-
-
+    //this.userStore.loadUsers();
   }
-  users = Users;
+ 
 
   fibonnaci(n: number): number {
     if (n < 2) {
